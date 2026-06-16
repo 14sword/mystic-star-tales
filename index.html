@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>神秘星语 | Mystic Star Tales - 探索神话与星辰的奇幻世界</title>
+    <meta name="description" content="在星辰与神话之间，聆听来自世界各地的古老传说。中国生肖、希腊星座、北欧极光、印度神树...十个神秘故事，带你进入梦幻的神话世界。">
+    <meta name="keywords" content="神话故事,睡前故事,星座传说,生肖神话,世界神话,神秘星语">
+    <meta name="author" content="Mystic Star Tales">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="./">
+    <meta property="og:url" content="./">
+    <meta property="og:title" content="神秘星语 | Mystic Star Tales">
+    <meta property="og:description" content="在星辰与神话之间，聆听来自世界各地的古老传说">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="神秘星语">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="神秘星语 | Mystic Star Tales">
+    <meta name="twitter:description" content="在星辰与神话之间，聆听来自世界各地的古老传说">
+    <meta name="twitter:image" content="assets/images/og-image.jpg">
+    <meta name="twitter:image:alt" content="神秘星语 - 世界神话睡前故事">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0f1a">
+    <meta name="msapplication-TileColor" content="#0a0f1a">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    
+    <!-- PWA -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="神秘星语">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.min.css?v=bundled">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "神秘星语 | Mystic Star Tales",
+        "description": "在星辰与神话之间，聆听来自世界各地的古老传说",
+        "url": "./"
+    }
+    </script>
+</head>
+<body>
+    <!-- 跳过导航链接（无障碍） -->
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
+    
+    <!-- 星轨背景画布 -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <!-- 主内容区 -->
+    <main class="main-container" id="main-content">
+        <!-- 标题区 -->
+        <header class="site-header">
+            <h1 class="main-title">
+                <span class="title-cn" data-i18n="appName">神秘星语</span>
+                <span class="title-en">Mystic Star Tales</span>
+            </h1>
+            <p class="subtitle" data-i18n="appSubtitle">在星辰与神话之间，聆听古老的呢喃</p>
+        </header>
+
+        <!-- 卡片网格 -->
+        <section class="cards-grid" id="cards-container" role="region" aria-label="神话故事列表">
+            <!-- 卡片由JS动态生成 -->
+        </section>
+    </main>
+
+    <!-- 故事详情模态框 -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close" aria-label="关闭故事详情">&times;</button>
+            <div class="modal-content">
+                <div class="modal-media">
+                    <div class="video-placeholder" id="video-placeholder">
+                        <div class="placeholder-icon">&#10022;</div>
+                        <p>AI视觉短片加载中</p>
+                        <span class="placeholder-hint">离线图片短片 / 联网视频增强</span>
+                    </div>
+                </div>
+                <div class="modal-text">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <p class="modal-origin" id="modal-origin"></p>
+                    <div class="modal-story" id="modal-story"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面加载动画（最先加载） -->
+    <script defer src="js/page-loader.js"></script>
+    
+    <!-- Core Data & Initialization -->
+    <script src="assets/generated/asset-manifest.js"></script>
+    <script defer src="js/cards-data.js?v=ai-intro-4"></script>
+    <script defer src="js/app-config.js"></script>
+    <script defer src="js/app-event-bus.js"></script>
+    <script defer src="js/storage-migration.js"></script>
+    
+    <!-- 首屏核心脚本：其余增强模块由 deferred-loader 在空闲期分批加载 -->
+    <script defer src="js/asset-service.js?v=ai-intro-4"></script>
+    
+    <!-- 核心业务逻辑 -->
+    <script defer src="js/cards-render-optimized.js?v=ai-intro-4"></script>
+    <script defer src="js/modal-optimized.js?v=ai-intro-4"></script>
+    <script defer src="js/image-loader.js?v=ai-intro-4"></script>
+    <script defer src="js/starfield-optimized.js"></script>
+    <script defer src="js/cursor-light.js"></script>
+    <script defer src="js/effects.js"></script>
+    <script defer src="js/main-optimized.js"></script>
+    <script defer src="js/deferred-loader.js"></script>
+    
+    <!-- Service Worker -->
+    <script>
+        if (location.protocol === 'http:' || location.protocol === 'https:') {
+            const manifestLink = document.createElement('link');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = 'manifest.json';
+            document.head.appendChild(manifestLink);
+        }
+
+        if ('serviceWorker' in navigator && (location.protocol === 'http:' || location.protocol === 'https:')) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js', { scope: './' })
+                    .catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>

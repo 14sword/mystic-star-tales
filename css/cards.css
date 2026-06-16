@@ -1,0 +1,356 @@
+/* 卡片网格布局 */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 卡片基础样式 */
+.mystic-card {
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        rgba(26, 36, 56, 0.9) 0%,
+        rgba(18, 26, 43, 0.95) 100%
+    );
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(201, 214, 227, 0.1);
+    box-shadow: var(--shadow-card);
+    outline: none;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* 卡片悬停效果 - 3D倾斜 */
+.mystic-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    border-color: rgba(201, 214, 227, 0.4);
+    box-shadow: 
+        var(--shadow-card),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(201, 214, 227, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 卡片3D倾斜效果容器 */
+.mystic-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.mystic-card:hover::after {
+    opacity: 1;
+}
+
+/* 卡片光晕扩散效果 */
+.mystic-card .card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(201, 214, 227, 0.3) 0%,
+        rgba(212, 175, 55, 0.1) 40%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+    --x: 50%;
+    --y: 50%;
+    transform: translate(-50%, -50%) translate3d(var(--x), var(--y), 0) scale(0);
+    transition: transform var(--transition-slow) cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+}
+
+.mystic-card:hover .card-glow,
+.mystic-card.keyboard-focused .card-glow,
+.mystic-card:focus-visible .card-glow {
+    transform: translate(-50%, -50%) translate3d(var(--x), var(--y), 0) scale(1.2);
+}
+
+/* 卡片边框光效 */
+.mystic-card .card-border-glow {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(201, 214, 227, 0.3) 50%,
+        transparent 70%
+    );
+    background-size: 200% 200%;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.mystic-card:hover .card-border-glow {
+    opacity: 1;
+    animation: borderGlowRotate 3s linear infinite;
+}
+
+@keyframes borderGlowRotate {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 键盘聚焦样式 */
+.mystic-card.keyboard-focused,
+.mystic-card:focus-visible {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(201, 214, 227, 0.5);
+    box-shadow: 
+        var(--shadow-card),
+        0 0 40px rgba(201, 214, 227, 0.2),
+        0 0 0 3px rgba(201, 214, 227, 0.3);
+}
+
+.mystic-card.keyboard-focused .card-icon,
+.mystic-card:focus-visible .card-icon {
+    opacity: 1;
+    transform: scale(1.1);
+    text-shadow: 0 0 30px var(--color-silver-glow);
+}
+
+.mystic-card.keyboard-focused .card-hint,
+.mystic-card:focus-visible .card-hint {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 卡片银质边框光效 */
+.mystic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-silver-light),
+        transparent
+    );
+    transition: left 0.8s ease;
+}
+
+.mystic-card:hover::before,
+.mystic-card.keyboard-focused::before,
+.mystic-card:focus-visible::before {
+    left: 100%;
+}
+
+/* 卡片图片区域 */
+.card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: linear-gradient(
+        180deg,
+        var(--color-bg-tertiary) 0%,
+        var(--color-bg-secondary) 100%
+    );
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-silver-dark);
+    font-size: var(--font-size-hero);
+    position: relative;
+}
+
+/* 卡片图标 */
+.card-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.8;
+    transition: all var(--transition-normal);
+}
+
+.mystic-card:hover .card-icon {
+    opacity: 1;
+    transform: scale(1.1);
+    text-shadow: 0 0 30px var(--color-silver-glow);
+}
+
+/* 卡片内容 */
+.card-content {
+    padding: var(--spacing-md);
+    position: relative;
+}
+
+.card-title {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.card-origin {
+    font-size: var(--font-size-xs);
+    color: var(--color-accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.8;
+}
+
+.card-preview {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 卡片装饰角标 */
+.card-corner {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(201, 214, 227, 0.3);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    color: var(--color-silver-light);
+    background: rgba(10, 15, 26, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+/* 触摸设备优化 */
+.touch-device .mystic-card {
+    transition: transform 0.2s ease;
+}
+
+.touch-device .mystic-card.touch-active {
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(212, 175, 55, 0.15);
+}
+
+/* 触摸设备禁用hover效果（避免粘滞） */
+@media (hover: none) and (pointer: coarse) {
+    .mystic-card:hover {
+        transform: none;
+    }
+    
+    .mystic-card::before {
+        display: none;
+    }
+    
+    .card-hint {
+        display: none;
+    }
+}
+
+/* 点击提示 */
+.card-hint {
+    position: absolute;
+    bottom: var(--spacing-sm);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    opacity: 0;
+    transition: all var(--transition-normal);
+}
+
+.mystic-card:hover .card-hint {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 滚动渐显动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 卡片入场 stagger 动画 */
+.mystic-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* 滚动渐显类 */
+.revealed {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+    .mystic-card,
+    .revealed {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}

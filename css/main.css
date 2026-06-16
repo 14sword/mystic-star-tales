@@ -1,0 +1,224 @@
+/* 主容器 */
+.main-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+}
+
+/* 网站头部 */
+.site-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+    padding: var(--spacing-xl) 0;
+}
+
+.main-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.title-cn {
+    font-size: var(--font-size-hero);
+    color: var(--color-text-primary);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 40px var(--color-silver-glow);
+    position: relative;
+}
+
+.title-cn::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-silver-light),
+        transparent
+    );
+}
+
+.title-en {
+    font-size: var(--font-size-md);
+    color: var(--color-silver-dark);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    margin-top: var(--spacing-lg);
+    opacity: 0.8;
+}
+
+/* 页脚 */
+.site-footer {
+    text-align: center;
+    padding: var(--spacing-xxl) var(--spacing-lg);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.1em;
+}
+
+.footer-divider {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 214, 227, 0.3),
+        transparent
+    );
+    margin: 0 auto var(--spacing-lg);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .main-container {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .title-cn {
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+    }
+    
+    .title-en {
+        font-size: var(--font-size-sm);
+        letter-spacing: 0.2em;
+    }
+    
+    .subtitle {
+        font-size: var(--font-size-sm);
+    }
+    
+    .site-header {
+        margin-bottom: var(--spacing-xl);
+    }
+}
+
+/* 跳过导航链接（无障碍） */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-silver-dark);
+    z-index: 9999;
+    transition: top var(--transition-fast);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.1em;
+}
+
+.skip-link:focus {
+    top: var(--spacing-sm);
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+}
+
+/* 鼠标跟随光效画布 */
+#cursor-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 鼠标粒子效果画布 */
+#effects-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* 入场动画 */
+@keyframes mysticPageFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.site-header {
+    animation: mysticPageFadeInUp 1s ease-out;
+}
+
+.cards-grid {
+    animation: mysticPageFadeInUp 1s ease-out 0.3s both;
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .site-header,
+    .cards-grid {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    #starfield,
+    #sand-canvas,
+    #cursor-light,
+    #effects-canvas {
+        display: none !important;
+    }
+    
+    .main-container {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .mystic-card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+}

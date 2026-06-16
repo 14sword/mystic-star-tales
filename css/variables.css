@@ -1,0 +1,66 @@
+/* CSS变量定义 - 神秘抒情风格配色 */
+:root {
+    /* 主色调 - 深墨蓝系 */
+    --color-bg-primary: #0a0f1a;
+    --color-bg-secondary: #121a2b;
+    --color-bg-tertiary: #1a2438;
+    
+    /* 星轨与光效 */
+    --color-star-bright: #ffffff;
+    --color-star-dim: rgba(255, 255, 255, 0.3);
+    --color-star-trail: rgba(200, 220, 255, 0.15);
+    --color-nebula: rgba(100, 150, 255, 0.08);
+    
+    /* 银质装饰 */
+    --color-silver-primary: #c9d6e3;
+    --color-silver-light: #e8eef5;
+    --color-silver-dark: #8a9ab0;
+    --color-silver-glow: rgba(201, 214, 227, 0.3);
+    
+    /* 神秘强调色 */
+    --color-accent-gold: #d4af37;
+    --color-accent-purple: #9b7cb6;
+    --color-accent-cyan: #7dd3e8;
+    
+    /* 流沙效果 */
+    --color-sand-gold: rgba(212, 175, 55, 0.6);
+    --color-sand-silver: rgba(201, 214, 227, 0.4);
+    
+    /* 文字颜色 */
+    --color-text-primary: #f0f4f8;
+    --color-text-secondary: #a8b8cc;
+    --color-text-muted: #6b7a8f;
+    
+    /* 间距 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 5rem;
+    
+    /* 圆角 */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 50%;
+    
+    /* 过渡 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 阴影 */
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 40px rgba(201, 214, 227, 0.15);
+    --shadow-inner: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    
+    /* 字体大小 */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-hero: 3rem;
+}

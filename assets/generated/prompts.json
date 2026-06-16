@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "model": "gpt-image-2",
+    "styleGuide": "Cinematic mythic illustration, deep midnight sky, luminous celestial accents, refined editorial composition, no text, no watermark, mobile-safe crop.",
+    "storyPrompts": {
+        "tiger": "A guardian tiger from ancient Chinese zodiac mythology standing beneath silver constellations, ceremonial golden markings, calm protective expression, star-dusted mountain forest.",
+        "sagittarius": "The wise centaur Chiron as Sagittarius, drawing a luminous bow under a Greek night sky, scholarly and compassionate, marble ruins and soft cosmic glow.",
+        "aurora": "Nordic aurora spirits dancing as ribbons of green, violet, and rose light above snowy tundra, quiet mythic atmosphere, elegant ethereal motion.",
+        "kalpavriksha": "The Indian wish-fulfilling tree Kalpavriksha with jeweled leaves and cosmic roots, sacred mountain atmosphere, warm golden blessings, serene devotional tone.",
+        "anubis": "Anubis in the hall of truth weighing a heart against a feather, ancient Egyptian celestial chamber, dignified and mysterious, warm gold and deep lapis.",
+        "amaterasu": "Amaterasu emerging from the heavenly rock cave, first sunlight spilling across sacred Japan, mirror glint, radiant yet gentle divine presence.",
+        "sidhe": "Celtic Sidhe fairy hill in Irish mist, moonlit grass, hidden doorway to an otherworldly palace, delicate lights and ancient druidic mystery.",
+        "quetzalcoatl": "Feathered serpent deity descending along a stepped pyramid at equinox sunset, emerald feathers, golden maize, Mesoamerican mythic grandeur.",
+        "firebird": "Slavic firebird with radiant red-gold feathers lighting a winter orchard of golden apples, hopeful and magical, dark forest background.",
+        "genie": "A brass lamp genie and flying carpet above an Arabian night market, blue smoke, stars and desert moon, luxurious but storybook-like wonder."
+    }
+}

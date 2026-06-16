@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build:css": "node tools/build-css.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.35.1"
+  }
+}

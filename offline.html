@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>离线模式 | 神秘星语</title>
+    <meta name="theme-color" content="#0a0f1a">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #0a0f1a;
+            --panel: rgba(18, 26, 43, 0.94);
+            --text: #f0f4f8;
+            --muted: #a8b8cc;
+            --gold: #d4af37;
+            --silver: #c9d6e3;
+        }
+
+        * { box-sizing: border-box; }
+
+        html,
+        body {
+            min-height: 100%;
+            margin: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(125, 211, 232, 0.12), transparent 34%),
+                radial-gradient(circle at 75% 70%, rgba(212, 175, 55, 0.12), transparent 34%),
+                var(--bg);
+            color: var(--text);
+            font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+        }
+
+        main {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+        }
+
+        .offline-panel {
+            width: min(520px, 100%);
+            padding: 28px;
+            border: 1px solid rgba(201, 214, 227, 0.18);
+            border-radius: 18px;
+            background: var(--panel);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(1.8rem, 8vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.18em;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin: 0 0 20px;
+        }
+
+        a,
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.14);
+            color: var(--gold);
+            text-decoration: none;
+            font: inherit;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="offline-panel" aria-labelledby="offline-title">
+            <h1 id="offline-title">离线模式</h1>
+            <p>当前网络不可用。已缓存的故事、图片和阅读记录仍可继续使用；联网后，登录账号的数据会自动尝试同步。</p>
+            <button type="button" onclick="location.reload()">重新连接</button>
+            <a href="./">返回首页</a>
+        </section>
+    </main>
+</body>
+</html>
