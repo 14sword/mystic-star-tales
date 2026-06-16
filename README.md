@@ -5,13 +5,23 @@
 A Cozy Mythic Story PWA Web Application. Built with Vanilla JS & Canvas Physics.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version: 1.1.0](https://img.shields.io/badge/version-1.1.0-green.svg)](CHANGELOG.md)
+[![Version: 1.2.0](https://img.shields.io/badge/version-1.2.0-green.svg)](CHANGELOG.md)
 [![PWA Ready](https://img.shields.io/badge/PWA-ready-orange.svg)](#)
 [![IndexedDB Support](https://img.shields.io/badge/IndexedDB-active-blue.svg)](#)
 
-[Demo](https://your-github-username.github.io/mystic-star-tales/) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
+[Demo](https://14sword.github.io/mystic-star-tales/) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
+
+<p align="center">
+  <img src="screenshots/desktop_home.png" width="49%" alt="Desktop Home" />
+  <img src="screenshots/desktop_modal.png" width="49%" alt="Desktop Modal" />
+</p>
+<p align="center">
+  <img src="screenshots/mobile_home.png" width="32%" alt="Mobile Home" />
+  <img src="screenshots/mobile_modal.png" width="32%" alt="Mobile Modal" />
+  <img src="screenshots/desktop_filtered.png" width="32%" alt="Desktop Filtered" />
+</p>
 
 ---
 
