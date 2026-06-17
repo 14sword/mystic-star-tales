@@ -3,8 +3,8 @@
  * Uses scope-relative URLs so the app works from root, subdirectories, or local static servers.
  */
 
-const CACHE_NAME = 'mystic-star-tales-ai-intros-v6';
-const RUNTIME_IMAGE_CACHE = 'mystic-star-tales-runtime-media-v6';
+const CACHE_NAME = 'mystic-star-tales-ai-intros-v7';
+const RUNTIME_IMAGE_CACHE = 'mystic-star-tales-runtime-media-v7';
 const SCOPE_URL = self.registration.scope;
 
 const ASSETS_TO_CACHE = [
@@ -47,6 +47,11 @@ const ASSETS_TO_CACHE = [
     'assets/images/quetzalcoatl.jpg',
     'assets/images/firebird.jpg',
     'assets/images/genie.jpg',
+    'assets/images/time-devotion.jpg',
+    'assets/images/altair-vega.jpg',
+    'assets/images/orpheus-lyre.jpg',
+    'assets/images/cupid-psyche.jpg',
+    'assets/images/tristan-iseult.jpg',
     'assets/images/og-image.jpg',
     'assets/icons/icon-192.png',
     'assets/icons/icon-512.png',

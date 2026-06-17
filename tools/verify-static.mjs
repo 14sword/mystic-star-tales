@@ -54,8 +54,8 @@ for (const icon of manifest.icons || []) {
     checkNonEmpty(icon.src, 'manifest icon');
 }
 
-if ((assetManifest.intros || []).length !== 10) {
-    failures.push(`Expected 10 AI story intros, found ${(assetManifest.intros || []).length}`);
+if ((assetManifest.intros || []).length !== 15) {
+    failures.push(`Expected 15 AI story intros, found ${(assetManifest.intros || []).length}`);
 }
 
 for (const intro of assetManifest.intros || []) {

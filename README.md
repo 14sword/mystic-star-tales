@@ -30,10 +30,10 @@ A Cozy Mythic Story PWA Web Application. Built with Vanilla JS & Canvas Physics.
 ## ✨ Features
 
 ### 📖 Content & Organization
-- **10 World Mythology Tales**: Explore distinct mythic stories covering Chinese zodiac, Greek constellations, Norse aurora, Egyptian Anubis, and more.
+- **15 World Mythology & Classic Tales**: Explore distinct mythic stories covering Chinese zodiac, Greek constellations, Norse aurora, Egyptian Anubis, time-transcending romance, and more.
 - **Story Category Filters**: Easily filter stories by region (East Asia, Europe, South Asia, Middle East, Americas) using a modern glassmorphic filter bar.
 - **Reading Progress Viz**: View estimated reading time and see a progress bar dynamically fill as you scroll.
-- **Mythic Timeline**: A drawer timeline that anchors all 10 stories to their corresponding historical eras.
+- **Mythic Timeline**: A drawer timeline that anchors all 15 stories to their corresponding historical eras.
 
 ### 🎨 Visual & Audio Experience
 - **Premium Glassmorphic UI**: Refactored cards interface leveraging CSS glassmorphism, nested border radii, and hover-zoom transitions.

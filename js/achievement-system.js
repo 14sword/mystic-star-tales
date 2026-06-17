@@ -96,7 +96,7 @@ class AchievementSystem {
         
         if (readCount >= 1) this.unlock('first-story');
         if (readCount >= 5) this.unlock('five-stories');
-        if (readCount >= 10) this.unlock('all-stories');
+                if (readCount >= 15) this.unlock('all-stories');
         
         // 检查收藏成就
         const favorites = JSON.parse(localStorage.getItem('mysticStar_favorites') || localStorage.getItem('mystic-star-tales-favorites') || '[]');
@@ -107,7 +107,7 @@ class AchievementSystem {
         const ratings = JSON.parse(localStorage.getItem('mystic-star-tales-ratings') || '{}');
         const ratingCount = Object.keys(ratings).length;
         if (ratingCount >= 1) this.unlock('first-rating');
-        if (ratingCount >= 10) this.unlock('all-ratings');
+        if (ratingCount >= 15) this.unlock('all-ratings');
         
         // 检查笔记成就
         const notes = JSON.parse(localStorage.getItem('mysticStar_notes') || localStorage.getItem('mystic-star-tales-notes') || '{}');

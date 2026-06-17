@@ -254,6 +254,131 @@ window.MysticAppManifest = {
         "神奇的织锦飞毯载着主人掠过广袤的沙海，在月光与绿洲之间自由穿梭。",
         "贪婪者被欲望吞噬，唯有纯洁的心灵能释放灯神，获得真正的自由与爱。"
       ]
+    },
+    {
+      "storyId": "time-devotion",
+      "poster": "assets/generated/story-intros/time-devotion/poster.webp",
+      "thumb": "assets/generated/story-intros/time-devotion/thumb.webp",
+      "frames": [
+        "assets/generated/story-intros/time-devotion/frame-01-v2.webp",
+        "assets/generated/story-intros/time-devotion/frame-02-v2.webp",
+        "assets/generated/story-intros/time-devotion/frame-03-v2.webp",
+        "assets/generated/story-intros/time-devotion/frame-04-v2.webp"
+      ],
+      "videoUrl": null,
+      "caption": "幽蓝与金砂在星海交轨，那是跨越时光的执念。",
+      "tone": "romantic",
+      "motion": "drift",
+      "prompt": "Two orbiting glowing celestial stars with swirling blue and gold nebulae, cosmic dust storm in deep space, romantic and ethereal cinematic illustration.",
+      "styleSeed": "mst-time-devotion-20260609",
+      "generatedAt": "2026-06-09T00:00:00.000Z",
+      "offline": true,
+      "frameCaptions": [
+        "幽蓝与金砂两颗星辰沿着各自的轨道前行，在黑暗的宇宙里无言守望。",
+        "幽蓝之星穿过无数恒星与繁华星海，但核心共振永远朝向唯一的目标。",
+        "红色的暗尘风暴肆虐星域，它们点亮了隔离凡尘的星云，构筑专属的二人世界。",
+        "跨越五十载尘世岁月，两颗星在双星轨道深情相拥，在静谧中永恒旋转。"
+      ]
+    },
+    {
+      "storyId": "altair-vega",
+      "poster": "assets/generated/story-intros/altair-vega/poster.webp",
+      "thumb": "assets/generated/story-intros/altair-vega/thumb.webp",
+      "frames": [
+        "assets/generated/story-intros/altair-vega/frame-01-v2.webp",
+        "assets/generated/story-intros/altair-vega/frame-02-v2.webp",
+        "assets/generated/story-intros/altair-vega/frame-03-v2.webp",
+        "assets/generated/story-intros/altair-vega/frame-04-v2.webp"
+      ],
+      "videoUrl": null,
+      "caption": "天河璀璨飞渡鹊桥，七夕星聚见证永恒。",
+      "tone": "mythic",
+      "motion": "veil",
+      "prompt": "The magpie bridge crossing the starry Milky Way, Altair and Vega meeting in the center, Chinese romantic celestial myth, cinematic picture-book frame.",
+      "styleSeed": "mst-altair-vega-20260609",
+      "generatedAt": "2026-06-09T00:00:00.000Z",
+      "offline": true,
+      "frameCaptions": [
+        "璀璨的织女星与牵牛星被天帝用一条无尽的银河冰冷地阻隔在两端。",
+        "他们只能在清冷的夜里隔河相望，思念的泪水化作划破天际的流星。",
+        "七月七日夜，千百只喜鹊飞上九重天，用羽翼在天河搭起宏伟的鹊桥。",
+        "两人在星光桥头深情重逢，在漫长分离的岁月中守望着不灭的爱意。"
+      ]
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "poster": "assets/generated/story-intros/orpheus-lyre/poster.webp",
+      "thumb": "assets/generated/story-intros/orpheus-lyre/thumb.webp",
+      "frames": [
+        "assets/generated/story-intros/orpheus-lyre/frame-01-v2.webp",
+        "assets/generated/story-intros/orpheus-lyre/frame-02-v2.webp",
+        "assets/generated/story-intros/orpheus-lyre/frame-03-v2.webp",
+        "assets/generated/story-intros/orpheus-lyre/frame-04-v2.webp"
+      ],
+      "videoUrl": null,
+      "caption": "伤逝哀琴动地府，天琴升空化作不朽的旋律。",
+      "tone": "solemn",
+      "motion": "weigh",
+      "prompt": "Orpheus holding a golden lyre walking through a dark greek underworld, glowing mist and stars, tragic mythic atmosphere, cinematic illustration.",
+      "styleSeed": "mst-orpheus-lyre-20260609",
+      "generatedAt": "2026-06-09T00:00:00.000Z",
+      "offline": true,
+      "frameCaptions": [
+        "为了挽救坠入冥界的爱妻，奥耳甫斯手持七弦琴，独自踏上幽深的冥府。",
+        "他的琴声充满悲痛与思念，感动了死河船夫和冥王，破例允许他带回妻子。",
+        "在即将重返人间的一刹那，他因渴望忍不住回头，妻子瞬间化作轻烟坠回深渊。",
+        "阿波罗将他的七弦琴升上天空，化作天琴座，在寂静的夏夜里永恒弹唱。"
+      ]
+    },
+    {
+      "storyId": "cupid-psyche",
+      "poster": "assets/generated/story-intros/cupid-psyche/poster.webp",
+      "thumb": "assets/generated/story-intros/cupid-psyche/thumb.webp",
+      "frames": [
+        "assets/generated/story-intros/cupid-psyche/frame-01-v2.webp",
+        "assets/generated/story-intros/cupid-psyche/frame-02-v2.webp",
+        "assets/generated/story-intros/cupid-psyche/frame-03-v2.webp",
+        "assets/generated/story-intros/cupid-psyche/frame-04-v2.webp"
+      ],
+      "videoUrl": null,
+      "caption": "灵魂在星海历尽试炼，爱神终与你并肩封神。",
+      "tone": "wonder",
+      "motion": "bloom",
+      "prompt": "Cupid and Psyche holding hands and ascending to mount Olympus, glowing butterfly wings, romantic greek roman myth, cinematic picture-book frame.",
+      "styleSeed": "mst-cupid-psyche-20260609",
+      "generatedAt": "2026-06-09T00:00:00.000Z",
+      "offline": true,
+      "frameCaptions": [
+        "普赛克公主被带到隐秘宫殿，但她严禁在有光时窥看爱神丘比特的真容。",
+        "在怀疑与好奇下，她夜半点灯惊醒了爱神，丘比特负气飞离了黄金宫殿。",
+        "为了寻回真爱，普赛克接受了美神维纳斯的重重致命试炼，历尽磨难。",
+        "丘比特被她的执着感动，在宙斯面前为她求情，赐予她神药，灵魂终获升华。"
+      ]
+    },
+    {
+      "storyId": "tristan-iseult",
+      "poster": "assets/generated/story-intros/tristan-iseult/poster.webp",
+      "thumb": "assets/generated/story-intros/tristan-iseult/thumb.webp",
+      "frames": [
+        "assets/generated/story-intros/tristan-iseult/frame-01-v2.webp",
+        "assets/generated/story-intros/tristan-iseult/frame-02-v2.webp",
+        "assets/generated/story-intros/tristan-iseult/frame-03-v2.webp",
+        "assets/generated/story-intros/tristan-iseult/frame-04-v2.webp"
+      ],
+      "videoUrl": null,
+      "caption": "墓畔榛蔓跨空纠缠，连理星芒见证生死誓约。",
+      "tone": "whisper",
+      "motion": "mist",
+      "prompt": "Two intertwined trees from adjacent graves growing towards the starry sky, Celtic romantic forest legend, cinematic picture-book frame.",
+      "styleSeed": "mst-tristan-iseult-20260609",
+      "generatedAt": "2026-06-09T00:00:00.000Z",
+      "offline": true,
+      "frameCaptions": [
+        "在惊涛骇浪的航船上，特里斯坦与伊苏尔德误服了命运的爱之药水。",
+        "他们的禁忌之爱面临国家恩怨的巨大阻力，只能在梦境与星空中无声相会。",
+        "特里斯坦伤重逝世，伊苏尔德殉情随之而去，被并排安葬在教堂的两侧。",
+        "两座墓畔长出榛树与藤蔓跨空紧紧纠缠，在夜空中化作交织的双子星宿。"
+      ]
     }
   ],
   "assets": [
@@ -715,6 +840,236 @@ window.MysticAppManifest = {
       "type": "intro-frame",
       "frameIndex": 4,
       "src": "assets/generated/story-intros/genie/frame-04-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "cover",
+      "src": "assets/images/time-devotion.jpg",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-poster",
+      "src": "assets/generated/story-intros/time-devotion/poster.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-thumb",
+      "src": "assets/generated/story-intros/time-devotion/thumb.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-frame",
+      "frameIndex": 1,
+      "src": "assets/generated/story-intros/time-devotion/frame-01-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-frame",
+      "frameIndex": 2,
+      "src": "assets/generated/story-intros/time-devotion/frame-02-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-frame",
+      "frameIndex": 3,
+      "src": "assets/generated/story-intros/time-devotion/frame-03-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "time-devotion",
+      "type": "intro-frame",
+      "frameIndex": 4,
+      "src": "assets/generated/story-intros/time-devotion/frame-04-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "cover",
+      "src": "assets/images/altair-vega.jpg",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-poster",
+      "src": "assets/generated/story-intros/altair-vega/poster.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-thumb",
+      "src": "assets/generated/story-intros/altair-vega/thumb.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-frame",
+      "frameIndex": 1,
+      "src": "assets/generated/story-intros/altair-vega/frame-01-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-frame",
+      "frameIndex": 2,
+      "src": "assets/generated/story-intros/altair-vega/frame-02-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-frame",
+      "frameIndex": 3,
+      "src": "assets/generated/story-intros/altair-vega/frame-03-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "altair-vega",
+      "type": "intro-frame",
+      "frameIndex": 4,
+      "src": "assets/generated/story-intros/altair-vega/frame-04-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "cover",
+      "src": "assets/images/orpheus-lyre.jpg",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-poster",
+      "src": "assets/generated/story-intros/orpheus-lyre/poster.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-thumb",
+      "src": "assets/generated/story-intros/orpheus-lyre/thumb.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-frame",
+      "frameIndex": 1,
+      "src": "assets/generated/story-intros/orpheus-lyre/frame-01-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-frame",
+      "frameIndex": 2,
+      "src": "assets/generated/story-intros/orpheus-lyre/frame-02-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-frame",
+      "frameIndex": 3,
+      "src": "assets/generated/story-intros/orpheus-lyre/frame-03-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "orpheus-lyre",
+      "type": "intro-frame",
+      "frameIndex": 4,
+      "src": "assets/generated/story-intros/orpheus-lyre/frame-04-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "cover",
+      "src": "assets/images/cupid-psyche.jpg",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-poster",
+      "src": "assets/generated/story-intros/cupid-psyche/poster.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-thumb",
+      "src": "assets/generated/story-intros/cupid-psyche/thumb.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-frame",
+      "frameIndex": 1,
+      "src": "assets/generated/story-intros/cupid-psyche/frame-01-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-frame",
+      "frameIndex": 2,
+      "src": "assets/generated/story-intros/cupid-psyche/frame-02-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-frame",
+      "frameIndex": 3,
+      "src": "assets/generated/story-intros/cupid-psyche/frame-03-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "cupid-psyche",
+      "type": "intro-frame",
+      "frameIndex": 4,
+      "src": "assets/generated/story-intros/cupid-psyche/frame-04-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "cover",
+      "src": "assets/images/tristan-iseult.jpg",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-poster",
+      "src": "assets/generated/story-intros/tristan-iseult/poster.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-thumb",
+      "src": "assets/generated/story-intros/tristan-iseult/thumb.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-frame",
+      "frameIndex": 1,
+      "src": "assets/generated/story-intros/tristan-iseult/frame-01-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-frame",
+      "frameIndex": 2,
+      "src": "assets/generated/story-intros/tristan-iseult/frame-02-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-frame",
+      "frameIndex": 3,
+      "src": "assets/generated/story-intros/tristan-iseult/frame-03-v2.webp",
+      "offline": true
+    },
+    {
+      "storyId": "tristan-iseult",
+      "type": "intro-frame",
+      "frameIndex": 4,
+      "src": "assets/generated/story-intros/tristan-iseult/frame-04-v2.webp",
       "offline": true
     }
   ]
