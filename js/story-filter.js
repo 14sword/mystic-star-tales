@@ -33,9 +33,22 @@ class StoryFilter {
         this.bindEvents();
     }
     
+    getOrCreateControlsContainer() {
+        let container = document.querySelector('.story-controls-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'story-controls-container';
+            const cardsContainer = document.getElementById('cards-container');
+            if (cardsContainer) {
+                cardsContainer.parentNode.insertBefore(container, cardsContainer);
+            }
+        }
+        return container;
+    }
+
     createFilterBar() {
-        const header = document.querySelector('.site-header');
-        if (!header) return;
+        const controlsContainer = this.getOrCreateControlsContainer();
+        if (!controlsContainer) return;
         
         const filterBar = document.createElement('div');
         filterBar.className = 'story-filter-bar';
@@ -50,60 +63,12 @@ class StoryFilter {
             </div>
         `;
         
-        header.appendChild(filterBar);
+        controlsContainer.appendChild(filterBar);
     }
     
     addStyles() {
         const style = document.createElement('style');
         style.textContent = `
-            .story-filter-bar {
-                margin-top: 2rem;
-                display: flex;
-                justify-content: center;
-            }
-            
-            .filter-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-                max-width: 600px;
-            }
-            
-            .filter-btn {
-                display: flex;
-                align-items: center;
-                gap: 0.4rem;
-                padding: 0.5rem 1rem;
-                background: rgba(26, 36, 56, 0.6);
-                border: 1px solid rgba(201, 214, 227, 0.15);
-                border-radius: 20px;
-                color: #a8b8cc;
-                font-size: 0.8rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-            
-            .filter-btn:hover {
-                background: rgba(26, 36, 56, 0.8);
-                border-color: rgba(201, 214, 227, 0.3);
-                color: #c9d6e3;
-            }
-            
-            .filter-btn.active {
-                background: rgba(212, 175, 55, 0.15);
-                border-color: rgba(212, 175, 55, 0.4);
-                color: #d4af37;
-            }
-            
-            .filter-btn .filter-icon {
-                font-size: 1rem;
-            }
-            
-            .filter-btn .filter-name {
-                letter-spacing: 0.05em;
-            }
-            
             /* 卡片筛选动画 */
             .mystic-card.filtered-out {
                 opacity: 0;
@@ -123,30 +88,6 @@ class StoryFilter {
                 to {
                     opacity: 1;
                     transform: scale(1) translateY(0);
-                }
-            }
-            
-            /* 响应式 */
-            @media (max-width: 768px) {
-                .story-filter-bar {
-                    margin-top: 1.5rem;
-                }
-                
-                .filter-container {
-                    gap: 0.4rem;
-                }
-                
-                .filter-btn {
-                    padding: 0.4rem 0.8rem;
-                    font-size: 0.75rem;
-                }
-                
-                .filter-btn .filter-name {
-                    display: none;
-                }
-                
-                .filter-btn .filter-icon {
-                    font-size: 1.2rem;
                 }
             }
         `;
@@ -170,12 +111,28 @@ class StoryFilter {
         // 监听收藏状态改变，当处于“我的收藏”筛选视图下时，实时更新卡片列表
         document.addEventListener('mystic:favorite-changed', () => {
             if (this.currentFilter === 'favorites') {
-                this.applyFilter('favorites');
+                this.applyFilter('favorites', true);
+            }
+        });
+
+        // 监听搜索事件，如果有输入，自动重置分类到 "all"
+        document.addEventListener('mystic:search-active', () => {
+            if (this.currentFilter !== 'all') {
+                this.currentFilter = 'all';
+                // 更新按钮状态
+                filterBtns.forEach(b => {
+                    if (b.dataset.filter === 'all') {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+                this.applyFilter('all', true);
             }
         });
     }
     
-    applyFilter(filter) {
+    applyFilter(filter, isSilent = false) {
         this.currentFilter = filter;
         const cards = document.querySelectorAll('.mystic-card');
         const category = this.categories[filter];
@@ -186,25 +143,37 @@ class StoryFilter {
                 (filter === 'favorites' && window.storyFavorites && window.storyFavorites.favorites.includes(cardId)) ||
                 (category.stories && category.stories.includes(cardId));
             
+            // 清除之前的定时器以防竞态条件
+            if (card._filterInTimeout) {
+                clearTimeout(card._filterInTimeout);
+                card._filterInTimeout = null;
+            }
+            if (card._filterOutTimeout) {
+                clearTimeout(card._filterOutTimeout);
+                card._filterOutTimeout = null;
+            }
+
             // 移除之前的动画类
             card.classList.remove('filtered-out', 'filtered-in');
             
             if (shouldBeVisible) {
                 card.style.display = '';
                 // 添加入场动画（带延迟）
-                setTimeout(() => {
+                card._filterInTimeout = setTimeout(() => {
                     card.classList.add('filtered-in');
+                    card._filterInTimeout = null;
                 }, index * 50);
             } else {
                 card.classList.add('filtered-out');
-                setTimeout(() => {
+                card._filterOutTimeout = setTimeout(() => {
                     card.style.display = 'none';
+                    card._filterOutTimeout = null;
                 }, 400);
             }
         });
         
         // 播放音效
-        if (window.audioSystem) {
+        if (!isSilent && window.audioSystem) {
             window.audioSystem.playClick();
         }
     }

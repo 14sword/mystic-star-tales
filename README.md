@@ -5,170 +5,109 @@
 A Cozy Mythic Story PWA Web Application. Built with Vanilla JS & Canvas Physics.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Version: 1.2.0](https://img.shields.io/badge/version-1.2.0-green.svg)](CHANGELOG.md)
+[![Version: 1.4.0](https://img.shields.io/badge/version-1.4.0-green.svg)](CHANGELOG.md)
 [![PWA Ready](https://img.shields.io/badge/PWA-ready-orange.svg)](#)
 [![IndexedDB Support](https://img.shields.io/badge/IndexedDB-active-blue.svg)](#)
 
 [Demo](https://14sword.github.io/mystic-star-tales/) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
+
 ### 🖥️ Desktop UI / 电脑端界面
 
-| 🌌 主页预览 (Home) | 🔍 分类与检索 (Filters) | 📖 故事阅读 (Modal) |
+| 🌌 主页预览 (Home) | 🔍 统一控制面板 (Controls Panel) | 📖 故事板阅读 (Storyboard) |
 | :---: | :---: | :---: |
-| <img src="screenshots/desktop_home.png" width="100%" alt="Desktop Home" /> | <img src="screenshots/desktop_filtered.png" width="100%" alt="Desktop Filtered" /> | <img src="screenshots/desktop_modal.png" width="100%" alt="Desktop Modal" /> |
+| <img src="screenshots/desktop_home.png" width="100%" alt="Desktop Home" /> | <img src="screenshots/desktop_filtered.png" width="100%" alt="Desktop Controls" /> | <img src="screenshots/desktop_modal.png" width="100%" alt="Desktop Storyboard" /> |
 
 ### 📱 Mobile UI / 移动端界面
 
-| 🌌 移动端主页 (Mobile Home) | 📖 移动端阅读 (Mobile Modal) |
+| 🌌 移动端主页 (Mobile Home) | 📖 移动端故事板 (Mobile Storyboard) |
 | :---: | :---: |
-| <img src="screenshots/mobile_home.png" width="100%" alt="Mobile Home" /> | <img src="screenshots/mobile_modal.png" width="100%" alt="Mobile Modal" /> |
-
-
----
-
-## ✨ Features
-
-### 📖 Content & Organization
-- **15 World Mythology & Classic Tales**: Explore distinct mythic stories covering Chinese zodiac, Greek constellations, Norse aurora, Egyptian Anubis, time-transcending romance, and more.
-- **Story Category Filters**: Easily filter stories by region (East Asia, Europe, South Asia, Middle East, Americas) using a modern glassmorphic filter bar.
-- **Reading Progress Viz**: View estimated reading time and see a progress bar dynamically fill as you scroll.
-- **Mythic Timeline**: A drawer timeline that anchors all 15 stories to their corresponding historical eras.
-
-### 🎨 Visual & Audio Experience
-- **Premium Glassmorphic UI**: Refactored cards interface leveraging CSS glassmorphism, nested border radii, and hover-zoom transitions.
-- **Cursor Flashlight Glow**: Re-enabled interactive cursor-tracking flashlight glow within card regions.
-- **3D Card Rotation**: Move your mouse across card boundaries to tilt them dynamically in 3D.
-- **Physics Canvas Backgrounds**: Multi-layered starfields, falling sands, and trailing mouse particles active in the background.
-- **Web Audio Sound Effects**: Ambient space drone generator and subtle click/hover audio effects synthesized directly in code.
-
-### ⌨️ Navigation & Access
-- **Keyboard Cheatsheet Drawer**: Press `?` to toggle a panel detailing keyboard shortcut commands.
-- **Interactive keyboard support**: `←` / `→` arrow keys navigation, `Enter` to open, and `Esc` to close modal overlays.
-- **Mobile Touch Enhancements**: Pre-configured swipe gestures and touch feedbacks optimized for iOS & Android.
-
-### 🛰️ Offline & Cloud Architecture
-- **PWA offline-first**: Installable shell with pre-cached assets (`sw.js`) and background stale-while-revalidate fetching.
-- **Local DB Layer**: Mirrors preferences, bookmarks, ratings, and stats locally using IndexedDB (no network required).
-- **Optional Supabase Cloud Sync**: Pre-wired Magic Link authentication and cloud storage sync schema.
-- **Optional AI Image generation**: Front-end client to dispatch generation prompts to OpenAI-integrated Edge Functions.
+| <img src="screenshots/mobile_home.png" width="100%" alt="Mobile Home" /> | <img src="screenshots/mobile_modal.png" width="100%" alt="Mobile Storyboard" /> |
 
 ---
 
-## 📂 Project Structure
+## ✨ Features / 核心特性
+
+### 📖 故事内容与阅读体验 (Content & Experience)
+- **15 个世界神话与经典传说**：涵盖中国生肖、希腊星座、北欧极光、埃及审判、爱神考验、时间执念等十五个精心绘制的故事板叙事。
+- **一体化控制面板（Unified Controls Panel）**：重构并统一了“分类筛选”与“智能搜索”，打造浑然一体的玻璃拟物态控制条。PC 端极致舒展，移动端横向流式滑动，极致优雅。
+- **沉浸式弹窗阅读（Immersive Storyboard）**：故事内容弹窗设计了绝佳的排版与卷轴式的阅读进度条指示，图文并茂，搭配“预估阅读时间”功能，使阅读体验如丝般顺滑。
+
+### 🎨 视听与动态特效 (Visuals & Audio)
+- **3D 卡片偏转动效**：鼠标悬停于塔罗牌式的故事卡片时，卡片会随指针位置在三维空间中产生细腻的偏转，配合多层阴影营造物理质感。
+- **高性能星空背景（Starfield Canvas）**：采用轻量级原生 Canvas 物理引擎绘制多层星轨旋转背景。经过极致优化，摒弃了高负载的鼠标跟随粒子，保障全平台 60FPS 顺畅运行。
+- **环境氛围音效（Web Audio）**：利用 Web Audio API 实时生成静谧的宇宙深空环境白噪音，搭配空灵清脆的交互反馈音效，带来多维度的视听盛宴。
+
+### ⚡ 性能与无障碍 (Performance & A11y)
+- **零依赖原生架构**：百分百使用 Vanilla JS 与原生 CSS 构建，无需任何第三方框架，实现极致的加载速度和极低的内存占用。
+- **非关键模块延迟加载（Idle-Time Loading）**：首屏极速加载，搜索、音效、过滤等非关键体验模块在 `requestIdleCallback` 闲置期间无感加载。
+- **全键盘访问支持**：支持 `←` / `→` 方向键翻阅故事，`Enter` 确认，`Esc` 退出。带有专门的快捷键速查面板（按 `?` 开启）。
+
+### 🛰️ PWA 与本地离线存储 (Offline-First)
+- **Service Worker 资源预缓存**：配置完善的 PWA 清单和缓存策略，不仅支持一键添加到桌面或手机主屏，在完全离线的环境下依然可以无缝访问。
+- **IndexedDB 无感持久化**：阅读记录、收藏列表等个性化偏好均在本地 IndexedDB 高效存储和实时同步，无需注册登录即可享受完整的个人化服务。
+
+---
+
+## 📂 Project Structure / 项目结构
 
 ```text
 mystic-star-tales/
-├── index.html                       # 主 HTML 页面骨架
-├── offline.html                     # PWA 离线降级备用页面
-├── sw.js                            # Service Worker 离线高兼容预缓存注册表
-├── manifest.json                    # PWA 应用清单配置文件
-├── LICENSE                          # MIT 开源协议证书
-├── README.md                        # 项目官方说明文档
-├── .gitignore                       # Git 忽略文件配置
-├── CHANGELOG.md                     # 版本迭代发布历史记录
-├── CONTRIBUTING.md                  # 开发者贡献指南
-├── css/                             # 样式设计系统目录
-│   ├── reset.css                    # 基础样式重置
-│   ├── variables.css                # 核心设计变量（色彩、间距、毛玻璃属性）
-│   ├── background.css               # 背景物理动效层专有样式
-│   ├── cards.css                    # 首页故事卡片交互样式
-│   ├── modal.css                    # 故事详情模态弹窗样式
-│   ├── main.css                     # 主页面容器布局样式
-│   ├── clean-ui.css                 # 高级毛玻璃卡片视觉覆盖样式
-│   └── styles.min.css               # 生产环境自动化合并压缩后的一体化 CSS
-├── js/                              # 模块化 JavaScript 逻辑目录
-│   ├── page-loader.js               # 首屏骨架屏加载动画与过渡
-│   ├── deferred-loader.js           # 核心：空闲时间（Idle-time）非关键模块延迟加载协调器
-│   ├── cards-data.js                # 静态结构化故事大纲数据
-│   ├── app-config.js                # 本地/云端 Supabase 配置加载器
-│   ├── app-event-bus.js             # 解耦发布订阅通信总线
-│   ├── storage-migration.js         # 历史本地存储兼容性迁移适配器
-│   ├── asset-service.js             # 本地静态资源映射与 Service Worker 同步服务
-│   ├── cards-render-optimized.js    # 卡片网格实时绘制、3D 边缘悬停倾斜特效
-│   ├── modal-optimized.js           # 故事详情阅读器弹窗、移动端滑动手势关闭逻辑
-│   ├── image-loader.js              # 图片渐进式毛玻璃预加载（Progressive Blur-up）
-│   ├── starfield-optimized.js       # Canvas 背景物理星轨物理轨迹渲染器
-│   ├── cursor-light.js              # 鼠标手电筒光晕轨迹跟随特效
-│   ├── effects.js                   # Canvas 流沙与粒子动效交互引擎
-│   ├── main-optimized.js            # 主程序调度装配总线
-│   ├── story-favorites.js           # 延迟加载：书签与故事收藏管理
-│   ├── story-rating.js              # 延迟加载：故事本地星级评分交互
-│   ├── story-notes.js               # 延迟加载：故事阅读笔记暂存器
-│   ├── story-search.js              # 延迟加载：首字母及模糊检索故事模块
-│   ├── story-filter.js              # 延迟加载：神话源流地区分类筛选逻辑
-│   ├── audio.js                     # 延迟加载：Web Audio API 界面交互音效合成器
-│   ├── ambient-music.js             # 延迟加载：Web Audio 空间环境氛围音乐播放器
-│   ├── reading-progress.js          # 延迟加载：阅读卷轴进度高亮和阅读时间预估
-│   ├── keyboard-hints.js            # 延迟加载：键盘快捷键抽屉面板组件
-│   └── achievement-system.js        # 延迟加载：里程碑勋章成就记录与弹窗系统
-├── assets/                          # 媒体静态资源目录
-│   ├── ambient-space.mp3            # 100% 浏览器兼容的高品质环境氛围音乐
-│   ├── icons/                       # PWA 应用入口桌面图标
-│   ├── images/                      # 10 个主线故事的高清固定 jpg 主题封面图
-│   └── generated/                   # 预置 of 离线分镜 WebP 动画帧目录及资产清单
-├── tools/                           # 自动化辅助工具链目录
-│   ├── build-css.mjs                # 轻量级 CSS 合并与混淆打包构建脚本
-│   ├── generate-ai-intro-assets.mjs # 离线 AI 可视化分镜图像清单生成器
-│   ├── verify-static.mjs            # 静态链接死链自动化检测校验脚本
-│   └── take_screenshots.py          # 基于 Playwright 的全尺寸网站截图捕捉脚本
-└── supabase/                        # 可选云同步后端配置目录
-    ├── schema.sql                   # 数据库迁移结构及安全策略规则
-    └── functions/                   # OpenAI Edge Functions AI 绘图/视频生成网关
+├── index.html                       # 主页面结构（语义化与无障碍优化）
+├── offline.html                     # PWA 离线降级页面
+├── sw.js                            # Service Worker 资源控制与离线策略
+├── manifest.json                    # PWA 应用清单
+├── css/                             # 模块化层叠样式表 (原生 CSS 变量 + 毛玻璃设计)
+│   ├── clean-ui.css                 # 核心控制面板、滑动手势及响应式样式
+│   └── styles.min.css               # 生产环境合并压缩最终产物
+├── js/                              # 原生 JavaScript 业务模块
+│   ├── deferred-loader.js           # 空闲时间非阻塞模块加载器 (核心性能优化点)
+│   ├── cards-data.js                # 静态故事数据
+│   ├── cards-render-optimized.js    # 3D 故事卡片网格渲染器
+│   ├── modal-optimized.js           # 沉浸式阅读器模态弹窗与手势逻辑
+│   ├── effects.js                   # 触控与涟漪轻量级物理动效引擎
+│   ├── story-search.js              # 拼音与模糊搜索引擎
+│   ├── story-filter.js              # 故事分类过滤器
+│   └── audio.js                     # 氛围与交互音效控制器
+├── assets/                          # 高清封面、音效与 SVG 图标资源
+├── tools/                           # 自动化构建脚本 (CSS 打包压缩等)
+└── supabase/                        # 可选的云端数据同步配置与 Edge Functions
 ```
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack / 技术栈
 
-- **Core**: Vanilla HTML5 / CSS3 / ES6+ JavaScript
-- **Animations**: HTML5 Canvas / requestAnimationFrame API
-- **Audio**: Web Audio API
-- **Database**: IndexedDB / LocalStorage
-- **PWA**: Service Worker / Web App Manifest
-- **Backend (Optional)**: Supabase / Edge Functions
+- **前端界面**：Vanilla HTML5 / CSS3 / ES6+ JavaScript（全原生编写，极致轻量）
+- **渲染与动效**：HTML5 Canvas / `requestAnimationFrame` / CSS 3D Transforms / Backdrop Filter
+- **多媒体与存储**：Web Audio API / IndexedDB / LocalStorage
+- **应用化架构**：PWA (Progressive Web App) / Service Worker
 
 ---
 
-## 🚀 Installation & Usage
+## 🚀 Installation & Usage / 安装与运行
 
-### Clone Repository
+### 1. 获取代码
 ```bash
 git clone https://github.com/your-username/mystic-star-tales.git
 cd mystic-star-tales
 ```
 
-### Run Locally
-Since this is a static offline-first app, you can run it with any simple local web server to test PWA capabilities (like Service Workers):
+### 2. 本地服务器启动
+本项目为纯前端静态 Web 应用，请使用任何本地 HTTP 服务器运行以完整体验 PWA 离线特性：
 
-#### Python
+#### 使用 Node.js (推荐)
+```bash
+npx http-server -p 8000
+```
+
+#### 使用 Python
 ```bash
 python3 -m http.server 8000
 ```
 
-#### Node.js
-```bash
-npx http-server -p 8000
-```
-Open your browser and navigate to `http://localhost:8000`.
-
----
-
-## 🚢 Optional Cloud Configuration
-
-To enable online Magic Link login and AI Image generation:
-
-1. Copy `js/app-config.example.js` to `js/app-config.js` and fill in your Supabase configuration:
-   ```javascript
-   window.MYSTIC_APP_CONFIG = {
-       supabaseUrl: 'https://your-project.supabase.co',
-       supabaseAnonKey: 'your-anon-key',
-       aiGenerationEnabled: true
-   };
-   ```
-2. Initialize database schema using `supabase/schema.sql`.
-3. Deploy the Edge Functions found in `supabase/functions/` to your project and configure `OPENAI_API_KEY` in Supabase.
-4. Detailed setup steps can be found in `docs/DEPLOYMENT.md`.
+在浏览器中打开 `http://localhost:8000` 即可开启探索之旅。
 
 ---
 

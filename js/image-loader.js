@@ -76,6 +76,7 @@ class ImageLoader {
                         // 创建图片元素
                         const img = document.createElement('img');
                         img.className = 'card-story-image';
+                        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
                         img.dataset.src = imageSrc;
                         img.alt = card.querySelector('.card-title')?.textContent || '';
                         img.loading = 'lazy';

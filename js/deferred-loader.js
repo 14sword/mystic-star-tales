@@ -5,7 +5,7 @@
 
 (function () {
     const app = window.MysticApp = window.MysticApp || {};
-    const LOADER_VERSION = '20260609-clean-1';
+    const LOADER_VERSION = '20260617-beautify-2';
     const loadedScripts = new Set(
         Array.from(document.scripts)
             .map((script) => script.getAttribute('src'))
@@ -29,8 +29,7 @@
                 'js/ambient-music.js',
                 'js/story-filter.js',
                 'js/reading-progress.js',
-                'js/keyboard-hints.js',
-                'js/achievement-system.js'
+                'js/keyboard-hints.js'
             ]
         }
     ];

@@ -3,6 +3,24 @@
  * 实时搜索故事标题和内容
  */
 
+const PINYIN_MAP = {
+    'tiger': ['yhcs', 'yinhuchuanshuo', 'hu', 'tiger', '老虎', 'laohu', '寅虎', '大老虎', '十二生肖', '生肖'],
+    'sagittarius': ['sszsh', 'sheshouzuoshenhua', 'ssz', 'sagittarius', '射手', '半人马', '人马座', '弓箭', '喀戎', '星座'],
+    'aurora': ['jgjl', 'jiguangjingling', 'jg', 'aurora', '北极光', '极光', '狐狸', '北欧', '神狐', '斯堪的纳维亚'],
+    'kalpavriksha': ['ryss', 'ruyishenshu', 'ry', 'kalpavriksha', '如意', '神树', '许愿树', '印度神话', '因陀罗'],
+    'anubis': ['anbsdsp', 'anubisideshenpan', 'anbs', 'anubis', '阿努比斯', '死神', '审判', '埃及', '胡狼', '心脏', '羽毛'],
+    'amaterasu': ['tzdsdyt', 'tianzhaodashendeyintui', 'tzds', 'amaterasu', '天照', '大神', '太阳神', '日本神话', '高天原', '天岩户'],
+    'sidhe': ['jlzqddy', 'jinglingzhiqiudediyu', 'jl', 'sidhe', '精灵', '爱尔兰', '凯尔特', '达南神族', '异世界'],
+    'quetzalcoatl': ['ysdsec', 'yusheshendeenci', 'yss', 'quetzalcoatl', '羽蛇神', '玛雅', '阿兹特克', '玉米', '美洲'],
+    'firebird': ['hndym', 'huoniaodeyumao', 'hn', 'firebird', '火鸟', '羽毛', '俄罗斯', '斯拉夫', '伊凡', '沙皇', '金苹果'],
+    'genie': ['dsyft', 'dengshenyufeitan', 'ds', 'genie', '灯神', '飞毯', '神灯', '阿拉丁', '阿拉伯', '中东', '许愿'],
+    'time-devotion': ['sjyznzs', 'shijianyuzhinianzhishi', 'sj', 'time', '时间', '执念', '时光', '钟表', '岁月', '魔法'],
+    'altair-vega': ['nlznxq', 'nlzn', 'niulangzhinvxingqiao', 'niulang', 'zhinv', '牛郎', '织女', '鹊桥', '七夕', '银河', '爱情'],
+    'orpheus-lyre': ['aefsdag', 'aoerfusideaige', 'aefs', 'orpheus', '奥菲斯', '欧律狄刻', '竖琴', '冥界', '希腊', '冥王', '回头'],
+    'cupid-psyche': ['asylhzs', 'aishenyulinghunzhishi', 'as', 'cupid', '爱神', '丘比特', '普赛克', '灵魂', '维纳斯', '蜡烛', '信任'],
+    'tristan-iseult': ['xyllzs', 'xingyelianlizhishi', 'xyll', 'tristan', '特里斯坦', '伊索尔德', '骑士', '亚瑟王', '魔药', '悲剧']
+};
+
 class StorySearch {
     constructor() {
         this.searchInput = null;
@@ -26,9 +44,22 @@ class StorySearch {
         this.bindEvents();
     }
     
+    getOrCreateControlsContainer() {
+        let container = document.querySelector('.story-controls-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'story-controls-container';
+            const cardsContainer = document.getElementById('cards-container');
+            if (cardsContainer) {
+                cardsContainer.parentNode.insertBefore(container, cardsContainer);
+            }
+        }
+        return container;
+    }
+    
     createSearchBar() {
-        const header = document.querySelector('.site-header');
-        if (!header) return;
+        const controlsContainer = this.getOrCreateControlsContainer();
+        if (!controlsContainer) return;
         
         const searchBar = document.createElement('div');
         searchBar.className = 'story-search-bar';
@@ -41,188 +72,40 @@ class StorySearch {
                 </button>
                 <div class="search-input-wrapper">
                     <input type="text" 
+                           id="story-search-input"
+                           name="q"
                            class="search-input" 
                            placeholder="搜索神话故事..." 
                            aria-label="搜索神话故事"
                            autocomplete="off">
                     <button class="search-clear" aria-label="清除搜索">&times;</button>
                 </div>
-                <div class="search-results"></div>
             </div>
         `;
         
-        header.appendChild(searchBar);
+        controlsContainer.appendChild(searchBar);
         
+        this.searchBar = searchBar;
         this.searchInput = searchBar.querySelector('.search-input');
-        this.searchResults = searchBar.querySelector('.search-results');
     }
     
     addStyles() {
         const style = document.createElement('style');
         style.textContent = `
-            .story-search-bar {
-                margin-top: 1.5rem;
-                display: flex;
-                justify-content: center;
-            }
-            
-            .search-container {
-                position: relative;
-            }
-            
-            .search-toggle {
-                width: 44px;
-                height: 44px;
-                border-radius: 50%;
-                background: rgba(26, 36, 56, 0.6);
-                border: 1px solid rgba(201, 214, 227, 0.2);
-                color: #c9d6e3;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-            }
-            
-            .search-toggle:hover {
-                background: rgba(26, 36, 56, 0.8);
-                border-color: rgba(201, 214, 227, 0.4);
-            }
-            
-            .search-toggle.active {
-                border-radius: 22px 0 0 22px;
-                border-right: none;
-            }
-            
-            .search-input-wrapper {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 0;
-                height: 44px;
-                overflow: hidden;
-                transition: width 0.3s ease;
-            }
-            
-            .search-input-wrapper.active {
-                width: 250px;
-            }
-            
-            .search-input {
-                width: 100%;
-                height: 100%;
-                padding: 0 35px 0 15px;
-                background: rgba(26, 36, 56, 0.8);
-                border: 1px solid rgba(201, 214, 227, 0.2);
-                border-left: none;
-                border-radius: 0 22px 22px 0;
-                color: #f0f4f8;
-                font-size: 0.9rem;
-                outline: none;
-            }
-            
-            .search-input::placeholder {
-                color: #8a9ab0;
-            }
-            
-            .search-clear {
-                position: absolute;
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: transparent;
-                border: none;
-                color: #8a9ab0;
-                cursor: pointer;
-                font-size: 1rem;
-                opacity: 0;
-                transition: opacity 0.2s ease;
-            }
-            
-            .search-clear.visible {
-                opacity: 1;
-            }
-            
-            .search-results {
-                position: absolute;
-                top: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 300px;
-                max-height: 300px;
-                background: rgba(26, 36, 56, 0.95);
-                border: 1px solid rgba(201, 214, 227, 0.2);
-                border-radius: 12px;
-                overflow-y: auto;
-                opacity: 0;
-                visibility: hidden;
-                transform: translateX(-50%) translateY(10px);
-                transition: all 0.3s ease;
-                backdrop-filter: blur(12px);
-                z-index: 100;
-            }
-            
-            .search-results.visible {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(0);
-            }
-            
-            .search-result-item {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                padding: 10px 14px;
-                cursor: pointer;
-                transition: background 0.2s ease;
-            }
-            
-            .search-result-item:hover {
-                background: rgba(201, 214, 227, 0.1);
-            }
-            
-            .search-result-icon {
-                font-size: 1.5rem;
-            }
-            
-            .search-result-info {
-                flex: 1;
-            }
-            
-            .search-result-title {
-                display: block;
-                color: #f0f4f8;
-                font-size: 0.9rem;
-            }
-            
-            .search-result-origin {
-                display: block;
-                color: #8a9ab0;
-                font-size: 0.75rem;
-            }
-            
-            .search-no-results {
-                padding: 20px;
-                text-align: center;
-                color: #8a9ab0;
-                font-size: 0.85rem;
-            }
-            
-            .search-highlight {
-                color: #d4af37;
-                font-weight: 500;
+            /* 在位过滤卡片 */
+            .mystic-card.search-hidden {
+                display: none !important;
             }
         `;
         document.head.appendChild(style);
     }
     
     bindEvents() {
-        const toggle = document.querySelector('.search-toggle');
-        const inputWrapper = document.querySelector('.search-input-wrapper');
-        const clearBtn = document.querySelector('.search-clear');
+        if (!this.searchBar) return;
+        
+        const toggle = this.searchBar.querySelector('.search-toggle');
+        const inputWrapper = this.searchBar.querySelector('.search-input-wrapper');
+        const clearBtn = this.searchBar.querySelector('.search-clear');
         
         // 切换搜索框
         toggle?.addEventListener('click', () => {
@@ -242,13 +125,31 @@ class StorySearch {
             
             // 显示/隐藏清除按钮
             clearBtn?.classList.toggle('visible', query.length > 0);
+            
+            // 如果输入框有内容，分发事件重置故事分类过滤
+            if (query.length > 0) {
+                if (window.MysticApp && window.MysticApp.events) {
+                    window.MysticApp.events.emit('search-active');
+                } else {
+                    document.dispatchEvent(new CustomEvent('mystic:search-active'));
+                }
+            }
+        });
+        
+        // 支持回车收起键盘
+        this.searchInput?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.searchInput.blur();
+                this.search(this.searchInput.value.trim());
+            }
         });
         
         // 清除搜索
         clearBtn?.addEventListener('click', () => {
             this.searchInput.value = '';
             clearBtn.classList.remove('visible');
-            this.searchResults.classList.remove('visible');
+            this.search('');
         });
         
         // ESC关闭
@@ -270,38 +171,48 @@ class StorySearch {
     openSearch() {
         const toggle = document.querySelector('.search-toggle');
         const inputWrapper = document.querySelector('.search-input-wrapper');
+        const container = document.querySelector('.search-container');
         
         toggle?.classList.add('active');
         inputWrapper?.classList.add('active');
+        container?.classList.add('active');
         this.searchInput?.focus();
     }
     
     closeSearch() {
-        const toggle = document.querySelector('.search-toggle');
-        const inputWrapper = document.querySelector('.search-input-wrapper');
+        if (!this.searchBar) return;
+        const toggle = this.searchBar.querySelector('.search-toggle');
+        const inputWrapper = this.searchBar.querySelector('.search-input-wrapper');
+        const container = this.searchBar.querySelector('.search-container');
+        const clearBtn = this.searchBar.querySelector('.search-clear');
         
         toggle?.classList.remove('active');
         inputWrapper?.classList.remove('active');
-        this.searchResults?.classList.remove('visible');
+        container?.classList.remove('active');
         
         if (this.searchInput) {
             this.searchInput.value = '';
+            clearBtn?.classList.remove('visible');
         }
+        
+        this.search('');
     }
     
     search(query) {
-        if (!query || typeof cardsData === 'undefined') {
-            this.searchResults?.classList.remove('visible');
+        const cards = document.querySelectorAll('.mystic-card');
+        
+        if (!query || typeof window.cardsData === 'undefined') {
+            cards.forEach(card => card.classList.remove('search-hidden'));
             return;
         }
 
         const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
         if (terms.length === 0) {
-            this.searchResults?.classList.remove('visible');
+            cards.forEach(card => card.classList.remove('search-hidden'));
             return;
         }
 
-        const scoredResults = cardsData.map(story => {
+        const scoredResults = window.cardsData.map(story => {
             let score = 0;
             const title = story.title.toLowerCase();
             const origin = story.origin.toLowerCase();
@@ -330,7 +241,16 @@ class StorySearch {
                     termScore += 5;
                 }
 
-                // 5. 模糊字符子序列匹配（如输入 "nzn" 或 "牛织" 模糊匹配 "牛郎织女"）
+                // 5. 拼音及外文别名匹配 (如 "nlzn" -> 牛郎织女)
+                if (termScore === 0) {
+                    const aliases = PINYIN_MAP[story.id] || [];
+                    const aliasMatch = aliases.some(alias => alias.includes(term) || this.isSubsequence(term, alias));
+                    if (aliasMatch) {
+                        termScore += 40;
+                    }
+                }
+
+                // 6. 模糊字符子序列匹配（如输入 "nzn" 或 "牛织" 模糊匹配 "牛郎织女"）
                 if (termScore === 0) {
                     if (this.isSubsequence(term, title)) {
                         termScore += 30;
@@ -347,20 +267,20 @@ class StorySearch {
             return { story, score, matchedAll };
         });
 
-        // 过滤得分大于0的故事
-        const filtered = scoredResults
+        // 过滤得分大于0的故事 ID
+        const matchedIds = new Set(scoredResults
             .filter(item => item.score > 0)
-            .sort((a, b) => {
-                // 优先展示满足所有检索词的故事
-                if (a.matchedAll !== b.matchedAll) {
-                    return a.matchedAll ? -1 : 1;
-                }
-                // 其次按照相关度得分降序排序
-                return b.score - a.score;
-            })
-            .map(item => item.story);
+            .map(item => item.story.id)
+        );
 
-        this.renderResults(filtered, terms);
+        // 应用过滤到 DOM
+        cards.forEach(card => {
+            if (matchedIds.has(card.dataset.id)) {
+                card.classList.remove('search-hidden');
+            } else {
+                card.classList.add('search-hidden');
+            }
+        });
     }
 
     isSubsequence(term, str) {
@@ -373,55 +293,6 @@ class StorySearch {
             sIdx++;
         }
         return tIdx === term.length;
-    }
-
-    renderResults(results, terms) {
-        if (!this.searchResults) return;
-        
-        if (results.length === 0) {
-            this.searchResults.innerHTML = '<div class="search-no-results">没有找到相关故事</div>';
-        } else {
-            this.searchResults.innerHTML = results.map(story => `
-                <div class="search-result-item" data-story-id="${story.id}">
-                    <span class="search-result-icon">${story.icon}</span>
-                    <div class="search-result-info">
-                        <span class="search-result-title">${this.highlight(story.title, terms)}</span>
-                        <span class="search-result-origin">${story.origin}</span>
-                    </div>
-                </div>
-            `).join('');
-            
-            // 绑定点击事件
-            this.searchResults.querySelectorAll('.search-result-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const storyId = item.dataset.storyId;
-                    const card = document.querySelector(`.mystic-card[data-id="${storyId}"]`);
-                    
-                    if (card) {
-                        card.click();
-                        this.closeSearch();
-                    }
-                });
-            });
-        }
-        
-        this.searchResults.classList.add('visible');
-    }
-
-    highlight(text, terms) {
-        if (!terms || terms.length === 0) return text;
-        let highlighted = text;
-        
-        // 匹配长度从长到短，防止短词破坏长词的高亮标签
-        const sortedTerms = [...terms].sort((a, b) => b.length - a.length);
-        sortedTerms.forEach(term => {
-            const escaped = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-            // 只匹配HTML标签外的文字，防止嵌套破坏span元素
-            const regex = new RegExp(`(${escaped})(?![^<>]*>)`, 'gi');
-            highlighted = highlighted.replace(regex, '<span class="search-highlight">$1</span>');
-        });
-        
-        return highlighted;
     }
 }
 

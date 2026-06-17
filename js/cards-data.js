@@ -494,3 +494,8 @@ cardsData.forEach((story) => {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = cardsData;
 }
+
+// 确保在全局范围内可访问（兼容不同加载方式和 file:// 协议）
+if (typeof window !== 'undefined') {
+    window.cardsData = cardsData;
+}

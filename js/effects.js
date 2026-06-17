@@ -56,31 +56,13 @@ class MouseEffects {
     }
 
     bindEvents() {
-        // 鼠标移动 - 粒子拖尾 (16ms 节流)
-        let lastSpawnTime = 0;
+        // 鼠标移动 - 不再生成粒子以优化性能
         document.addEventListener('mousemove', (e) => {
             if (!this.enabled) return;
 
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
             this.isMoving = true;
-
-            const now = performance.now();
-            if (now - lastSpawnTime > 80) { // 降低频率到 80ms
-                const dx = this.mouse.x - this.mouse.lastX;
-                const dy = this.mouse.y - this.mouse.lastY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance > 20) { // 需要移动更长距离才会触发
-                    const particleCount = 1;
-                    if (Math.random() > 0.6) { // 只有 40% 的概率生成粒子
-                        this.spawnParticles(this.mouse.x, this.mouse.y, particleCount);
-                    }
-                    this.mouse.lastX = this.mouse.x;
-                    this.mouse.lastY = this.mouse.y;
-                    lastSpawnTime = now;
-                }
-            }
 
             // 清除移动停止检测
             clearTimeout(this.moveTimeout);
@@ -95,13 +77,12 @@ class MouseEffects {
             this.spawnRipple(e.clientX, e.clientY);
         });
 
-        // 触摸设备支持
+        // 触摸设备支持 - 移动不再生成粒子以优化性能
         document.addEventListener('touchmove', (e) => {
             if (!this.enabled) return;
             const touch = e.touches[0];
             this.mouse.x = touch.clientX;
             this.mouse.y = touch.clientY;
-            this.spawnParticles(this.mouse.x, this.mouse.y, 1);
         }, { passive: true });
 
         document.addEventListener('touchstart', (e) => {

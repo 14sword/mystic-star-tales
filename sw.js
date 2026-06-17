@@ -3,8 +3,8 @@
  * Uses scope-relative URLs so the app works from root, subdirectories, or local static servers.
  */
 
-const CACHE_NAME = 'mystic-star-tales-ai-intros-v7';
-const RUNTIME_IMAGE_CACHE = 'mystic-star-tales-runtime-media-v7';
+const CACHE_NAME = 'mystic-star-tales-ai-intros-v9';
+const RUNTIME_IMAGE_CACHE = 'mystic-star-tales-runtime-media-v9';
 const SCOPE_URL = self.registration.scope;
 
 const ASSETS_TO_CACHE = [
@@ -23,7 +23,6 @@ const ASSETS_TO_CACHE = [
     'js/modal-optimized.js',
     'js/image-loader.js',
     'js/starfield-optimized.js',
-    'js/cursor-light.js',
     'js/effects.js',
     'js/main-optimized.js',
     'js/deferred-loader.js',
@@ -32,7 +31,6 @@ const ASSETS_TO_CACHE = [
     'js/story-filter.js',
     'js/reading-progress.js',
     'js/keyboard-hints.js',
-    'js/achievement-system.js',
     'js/story-favorites.js',
     'js/story-rating.js',
     'js/story-notes.js',

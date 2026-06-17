@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-06-17
+
+### Added
+- **Unified Controls Panel**: Combined story filter buttons and the search input bar into a single horizontal glassmorphic panel (`.story-controls-container`), aligned perfectly with the card grid at `1180px` max-width.
+- **Slide-to-Left Search**: Re-engineered search bar layout so the magnifying glass toggle resides on the right side of the control panel and expands smoothly leftwards.
+- **Mobile Flow Edge Gradients**: Integrated transparent fade-out gradient overlays at the left and right edges of the horizontally scrollable filter list on mobile to indicate scrollability.
+
+### Changed
+- **PWA Service Worker Cache**: Upgraded Service Worker cache namespace to `v9` to force clean reload and wipe legacy client assets cache.
+- **Responsive Layout Flow**: Set controls bar on mobile screen to a vertical stacked list (search input full-width on top, filter horizontal scroll below) to optimize viewport real estate.
+
+### Removed
+- **Redundant Achievement System**: Completely removed `js/achievement-system.js` script, cleaned up `.achievement-btn` and `.achievements-panel` styles from `css/clean-ui.css`, and removed it from Service Worker cache targets to clean up unused UI features and reduce bundle size.
+
 ---
 
 ## [1.2.0] - 2026-06-16

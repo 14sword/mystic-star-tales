@@ -12,8 +12,6 @@
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <link rel="canonical" href="./">
-    <meta property="og:url" content="./">
     <meta property="og:title" content="神秘星语 | Mystic Star Tales">
     <meta property="og:description" content="在星辰与神话之间，聆听来自世界各地的古老传说">
     <meta property="og:image" content="assets/images/og-image.jpg">
@@ -47,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.min.css?v=bundled">
+    <link rel="stylesheet" href="css/styles.min.css?v=ai-layout-beautify-2">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -110,20 +108,19 @@
     
     <!-- Core Data & Initialization -->
     <script src="assets/generated/asset-manifest.js"></script>
-    <script defer src="js/cards-data.js?v=ai-intro-4"></script>
+    <script defer src="js/cards-data.js?v=ai-intro-8"></script>
     <script defer src="js/app-config.js"></script>
     <script defer src="js/app-event-bus.js"></script>
     <script defer src="js/storage-migration.js"></script>
     
     <!-- 首屏核心脚本：其余增强模块由 deferred-loader 在空闲期分批加载 -->
-    <script defer src="js/asset-service.js?v=ai-intro-4"></script>
+    <script defer src="js/asset-service.js?v=ai-intro-8"></script>
     
     <!-- 核心业务逻辑 -->
-    <script defer src="js/cards-render-optimized.js?v=ai-intro-4"></script>
-    <script defer src="js/modal-optimized.js?v=ai-intro-4"></script>
-    <script defer src="js/image-loader.js?v=ai-intro-4"></script>
+    <script defer src="js/cards-render-optimized.js?v=ai-intro-8"></script>
+    <script defer src="js/modal-optimized.js?v=ai-intro-8"></script>
+    <script defer src="js/image-loader.js?v=ai-intro-8"></script>
     <script defer src="js/starfield-optimized.js"></script>
-    <script defer src="js/cursor-light.js"></script>
     <script defer src="js/effects.js"></script>
     <script defer src="js/main-optimized.js"></script>
     <script defer src="js/deferred-loader.js"></script>
@@ -131,6 +128,16 @@
     <!-- Service Worker -->
     <script>
         if (location.protocol === 'http:' || location.protocol === 'https:') {
+            const canonicalLink = document.createElement('link');
+            canonicalLink.rel = 'canonical';
+            canonicalLink.href = './';
+            document.head.appendChild(canonicalLink);
+
+            const ogUrlMeta = document.createElement('meta');
+            ogUrlMeta.setAttribute('property', 'og:url');
+            ogUrlMeta.content = './';
+            document.head.appendChild(ogUrlMeta);
+
             const manifestLink = document.createElement('link');
             manifestLink.rel = 'manifest';
             manifestLink.href = 'manifest.json';
