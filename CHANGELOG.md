@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.4.0] - 2026-06-18
+
+### Added
+- **Project Documentation Rewrite**: Substantially rewrote `README.md` to highlight the pure Vanilla JS architecture, Canvas performance, and IndexedDB local caching capabilities.
+- **Updated Visual Assets**: Regenerated all `screenshots/` layout references, capturing the newly integrated glassmorphism controls panel across Desktop and Mobile viewports.
+
+### Changed
+- **Canvas Physics Optimization**: Disabled heavy particle emission calculations (`spawnParticles`) in `mousemove` and `touchmove` events within `js/effects.js` to eliminate frame drops and CPU spikes during scrolling, retaining only lightweight click ripples.
+- **Dependency Cleanup**: Confirmed removal of `js/cursor-light.js` and finalized unified CSS structure, ensuring no dynamic inline styles override the glass panel layouts.
+
+---
 
 ## [1.3.0] - 2026-06-17
 
