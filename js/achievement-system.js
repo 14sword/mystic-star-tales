@@ -14,9 +14,9 @@ class AchievementSystem {
             'all-stories': { name: '神话大师', desc: '阅读所有故事', icon: '🏆' },
             'first-favorite': { name: '心动时刻', desc: '收藏第一个故事', icon: '❤️' },
             'five-favorites': { name: '收藏家', desc: '收藏5个故事', icon: '💎' },
-            'first-rating': { name: '品鉴师', desc: '为第一个故事评分', icon: '⭐' },
-            'all-ratings': { name: '评论家', desc: '为所有故事评分', icon: '🌟' },
-            'first-note': { name: '记录者', desc: '写下第一条笔记', icon: '📝' },
+            'first-note': { name: '笔墨轻落', desc: '写下第一条随笔', icon: '📝' },
+            'three-notes': { name: '心有所悟', desc: '写下3条故事笔记', icon: '✍️' },
+            'five-notes': { name: '故事吟诵者', desc: '写下5条故事笔记', icon: '📜' },
             'music-lover': { name: '音乐爱好者', desc: '播放背景音乐', icon: '🎵' },
             'explorer': { name: '探索者', desc: '使用搜索功能', icon: '🔍' }
         };
@@ -103,15 +103,12 @@ class AchievementSystem {
         if (favorites.length >= 1) this.unlock('first-favorite');
         if (favorites.length >= 5) this.unlock('five-favorites');
         
-        // 检查评分成就
-        const ratings = JSON.parse(localStorage.getItem('mystic-star-tales-ratings') || '{}');
-        const ratingCount = Object.keys(ratings).length;
-        if (ratingCount >= 1) this.unlock('first-rating');
-        if (ratingCount >= 15) this.unlock('all-ratings');
-        
         // 检查笔记成就
         const notes = JSON.parse(localStorage.getItem('mysticStar_notes') || localStorage.getItem('mystic-star-tales-notes') || '{}');
-        if (Object.keys(notes).length >= 1) this.unlock('first-note');
+        const noteCount = Object.keys(notes).length;
+        if (noteCount >= 1) this.unlock('first-note');
+        if (noteCount >= 3) this.unlock('three-notes');
+        if (noteCount >= 5) this.unlock('five-notes');
     }
     
     observeEvents() {

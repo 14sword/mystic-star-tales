@@ -294,16 +294,88 @@ class StorySearch {
             this.searchResults?.classList.remove('visible');
             return;
         }
-        
-        const results = cardsData.filter(story => {
-            const searchText = `${story.title} ${story.origin} ${story.preview} ${story.story}`.toLowerCase();
-            return searchText.includes(query.toLowerCase());
+
+        const terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+        if (terms.length === 0) {
+            this.searchResults?.classList.remove('visible');
+            return;
+        }
+
+        const scoredResults = cardsData.map(story => {
+            let score = 0;
+            const title = story.title.toLowerCase();
+            const origin = story.origin.toLowerCase();
+            const preview = story.preview.toLowerCase();
+            const storyText = story.story.toLowerCase();
+
+            let matchedAll = true;
+            terms.forEach(term => {
+                let termScore = 0;
+                // 1. 标题匹配（最高权重）
+                if (title.includes(term)) {
+                    termScore += 100;
+                    if (title === term) termScore += 100; // 完全匹配 bonus
+                    if (title.startsWith(term)) termScore += 50; // 前缀匹配 bonus
+                }
+                // 2. 出处匹配（中等权重）
+                if (origin.includes(term)) {
+                    termScore += 40;
+                }
+                // 3. 预览简介匹配（较低权重）
+                if (preview.includes(term)) {
+                    termScore += 15;
+                }
+                // 4. 故事全文匹配（最低权重）
+                if (storyText.includes(term)) {
+                    termScore += 5;
+                }
+
+                // 5. 模糊字符子序列匹配（如输入 "nzn" 或 "牛织" 模糊匹配 "牛郎织女"）
+                if (termScore === 0) {
+                    if (this.isSubsequence(term, title)) {
+                        termScore += 30;
+                    } else if (this.isSubsequence(term, preview)) {
+                        termScore += 5;
+                    } else {
+                        matchedAll = false;
+                    }
+                }
+
+                score += termScore;
+            });
+
+            return { story, score, matchedAll };
         });
-        
-        this.renderResults(results, query);
+
+        // 过滤得分大于0的故事
+        const filtered = scoredResults
+            .filter(item => item.score > 0)
+            .sort((a, b) => {
+                // 优先展示满足所有检索词的故事
+                if (a.matchedAll !== b.matchedAll) {
+                    return a.matchedAll ? -1 : 1;
+                }
+                // 其次按照相关度得分降序排序
+                return b.score - a.score;
+            })
+            .map(item => item.story);
+
+        this.renderResults(filtered, terms);
     }
-    
-    renderResults(results, query) {
+
+    isSubsequence(term, str) {
+        let tIdx = 0;
+        let sIdx = 0;
+        while (tIdx < term.length && sIdx < str.length) {
+            if (term[tIdx] === str[sIdx]) {
+                tIdx++;
+            }
+            sIdx++;
+        }
+        return tIdx === term.length;
+    }
+
+    renderResults(results, terms) {
         if (!this.searchResults) return;
         
         if (results.length === 0) {
@@ -313,7 +385,7 @@ class StorySearch {
                 <div class="search-result-item" data-story-id="${story.id}">
                     <span class="search-result-icon">${story.icon}</span>
                     <div class="search-result-info">
-                        <span class="search-result-title">${this.highlight(story.title, query)}</span>
+                        <span class="search-result-title">${this.highlight(story.title, terms)}</span>
                         <span class="search-result-origin">${story.origin}</span>
                     </div>
                 </div>
@@ -335,10 +407,21 @@ class StorySearch {
         
         this.searchResults.classList.add('visible');
     }
-    
-    highlight(text, query) {
-        const regex = new RegExp(`(${query})`, 'gi');
-        return text.replace(regex, '<span class="search-highlight">$1</span>');
+
+    highlight(text, terms) {
+        if (!terms || terms.length === 0) return text;
+        let highlighted = text;
+        
+        // 匹配长度从长到短，防止短词破坏长词的高亮标签
+        const sortedTerms = [...terms].sort((a, b) => b.length - a.length);
+        sortedTerms.forEach(term => {
+            const escaped = term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            // 只匹配HTML标签外的文字，防止嵌套破坏span元素
+            const regex = new RegExp(`(${escaped})(?![^<>]*>)`, 'gi');
+            highlighted = highlighted.replace(regex, '<span class="search-highlight">$1</span>');
+        });
+        
+        return highlighted;
     }
 }
 

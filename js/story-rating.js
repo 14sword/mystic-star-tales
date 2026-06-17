@@ -609,17 +609,13 @@ class StoryRating {
         });
     }
 
-    // 为故事模态框添加评分区域
+    // 为故事模态框添加评分区域 (已屏蔽UI以还用户清爽沉浸的睡前阅读体验)
     addRatingToStoryModal(storyId) {
         const modalBody = document.querySelector('#modal-overlay .modal-text')
             || document.querySelector('.story-modal .modal-body');
-        if (!modalBody) return;
-
-        // 检查是否已存在评分区域
-        modalBody.querySelectorAll('.rating-section').forEach((node) => node.remove());
-
-        const ratingSection = this.createRatingUI(storyId);
-        modalBody.appendChild(ratingSection);
+        if (modalBody) {
+            modalBody.querySelectorAll('.rating-section').forEach((node) => node.remove());
+        }
     }
 }
 
