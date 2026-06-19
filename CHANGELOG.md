@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2026-06-18
 
 ### Added
+- **Story Database Expansion**: Expanded the tales collection from 10 to 15, adding 5 new celestial romance and mythic tales (Cupid & Psyche, Altair & Vega, Tristan & Iseult, Orpheus' Lyre, Devotion of Time) along with beautiful, theme-matching visual assets.
+- **Sequential AI Illustrations**: Integrated sequential narrative-driven illustration sequences for the new stories, enhancing the immersive reading experience with visual-novel-style step-by-step scene depictions.
 - **Project Documentation Rewrite**: Substantially rewrote `README.md` to highlight the pure Vanilla JS architecture, Canvas performance, and IndexedDB local caching capabilities.
-- **Updated Visual Assets**: Regenerated all `screenshots/` layout references, capturing the newly integrated glassmorphism controls panel across Desktop and Mobile viewports.
+- **Updated Visual Assets**: Regenerated all `screenshots/` layout references, capturing the newly integrated glassmorphic controls panel across Desktop and Mobile viewports.
 
 ### Changed
+- **Advanced Fuzzy Search Engine**: Upgraded the story search system to support multi-term fuzzy splitting, ranking, and relevance-based scoring.
 - **Canvas Physics Optimization**: Disabled heavy particle emission calculations (`spawnParticles`) in `mousemove` and `touchmove` events within `js/effects.js` to eliminate frame drops and CPU spikes during scrolling, retaining only lightweight click ripples.
-- **Dependency Cleanup**: Confirmed removal of `js/cursor-light.js` and finalized unified CSS structure, ensuring no dynamic inline styles override the glass panel layouts.
+- **Dependency & UI Cleanup**: Simplified the reading modal by removing the rating feedback panel to keep the interface clean and focused, and confirmed removal of legacy scripts like `js/cursor-light.js`.
 
 ---
 
