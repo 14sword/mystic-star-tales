@@ -90,7 +90,7 @@ mystic-star-tales/
 
 ### 1. 获取代码
 ```bash
-git clone https://github.com/your-username/mystic-star-tales.git
+git clone https://github.com/14sword/mystic-star-tales.git
 cd mystic-star-tales
 ```
 
